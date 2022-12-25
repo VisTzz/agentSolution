@@ -27,7 +27,7 @@ const NavBar = observer(() => {
           </Nav>
           :
           <Nav className="me-auto">
-            <Button variant="light">Привет</Button>
+            <Button variant="light">Привет, {user.email}</Button>
             <Button variant="light" onClick = {() => user.setIsAuth(!user.isAuth)}>Выйти</Button>
           </Nav>
         }
