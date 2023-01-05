@@ -11,3 +11,7 @@ create TABLE post(
     user_id VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES person (id)
 )
+
+INSERT INTO public.users(
+	id, email, password, role, "createdAt", "updatedAt")
+	VALUES (0, 'admin', 'admin', 'admin', NOW(), NOW());
