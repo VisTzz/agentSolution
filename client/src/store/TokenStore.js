@@ -7,6 +7,7 @@ export default class TokenStore {
     } 
 
     setToken(token) {
+        sessionStorage.setItem('token', JSON.stringify(token))
         this._token = token;
     }
 
@@ -14,11 +15,7 @@ export default class TokenStore {
         this._token = token;
     }
 
-    get isAuth() {
-        return this._isAuth;
-    }
-
-    get user() {
-        return this._user;
+    get token() {
+        return this.token;
     }
 }

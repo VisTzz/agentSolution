@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import addresses from '../utils/const';
-import { Context } from '..';
+import { Context } from "../index";
 import { observer } from 'mobx-react';
 import { ListGroup } from 'react-bootstrap';
 

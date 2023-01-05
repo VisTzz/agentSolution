@@ -1,13 +1,28 @@
-import React from "react";
+import { observer } from "mobx-react";
+import React, { useContext, useEffect } from "react";
 import {
   BrowserRouter,
 } from "react-router-dom";
+import Alert from "./components/alert";
 import Dashboard from "./components/dashboard";
 import NavBar from "./components/navbar";
 import Routess from './routes'
+import { Context } from "./index";
+import { checkAuth } from "./http/userAPI";
 
 
-const App = () => {
+const App = observer( () => {
+  const {user} = useContext(Context)
+  
+  useEffect(() => {
+    checkAuth().then(data => {
+      
+      user.setUser()
+      user.setIsAuth(true)
+      console.log(data)
+    })
+  })
+
   return (
     <BrowserRouter>
       <NavBar></NavBar>
@@ -16,6 +31,6 @@ const App = () => {
       <Routess />
     </BrowserRouter>
   );
-}
+})
 
 export default App;

@@ -3,28 +3,37 @@ import { Button, Card, Container, Form } from 'react-bootstrap';
 import { useContext } from "react";
 import { Context } from "../index";
 import { useParams } from 'react-router-dom';
-import { login } from '../http/userAPI';
+import { login, registration } from '../http/userAPI';
+import Alert from 'react-bootstrap/Alert';
+import { observer } from 'mobx-react-lite';
 const jwt = require('react-jwt')
 
-export default function Auth() {
+export default observer (function Auth() {
   //const { user } = useContext(Context);
-  const [user, setUser] = useState({ id: '', role: '', email: '', password: '', isAuth: false })
-  const [isAuth, setIsAuth] = useState(false)
+  const {user} = useContext(Context)
+  const {token} = useContext(Context)
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('');
 
   const loginUser = async (email, password) => {
-    const response = await login({ email, password })
-    if (response.token) {
-      const decode = jwt.decodeToken(response.token)
-      setUser({
-        email: decode.email,
-        role: decode.role,
-        id: decode.id,
-        isAuth: true
-      })
-      
+    try {
+      const response = await login({ email, password })
+      if (response.token) {
+        const decode = jwt.decodeToken(response.token)
+        user.setUser({
+          email: decode.email,
+          role: decode.role
+        })
+        user.setIsAuth(true);
+        token.setToken(response.token)
+      }
     }
-    console.log(user)
-    return response;
+    catch(e) {
+      console.log(e)
+      alert(e.response.data.message)
+    }
+
   }
 
   return (
@@ -35,26 +44,20 @@ export default function Auth() {
           <Form.Group className="mb-3">
             <Form.Label>Email</Form.Label>
             <Form.Control
-              onChange={(e) => setUser({
-                email: e.target.value,
-                password: user.password
-              })}
-              value={user.email}
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
               type="email" placeholder="Введите почту" />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Пароль</Form.Label>
             <Form.Control
-              onChange={(e) => setUser({
-                email: user.email,
-                password: e.target.value
-              })}
-              value={user.password}
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
               type="password" placeholder="Введите пароль" />
           </Form.Group>
         </Form>
-        <Button onClick={() => loginUser(user.email, user.password)}>Войти</Button>
+        <Button onClick={() => loginUser(email, password)}>Войти</Button>
       </Card>
     </Container>
   );
-}
+})

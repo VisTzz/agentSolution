@@ -4,12 +4,11 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import addresses from '../utils/const';
-import { Context } from '..';
+import { Context } from "../index";
 import { observer } from 'mobx-react';
 
 const NavBar = observer(() => {
   const { user } = useContext(Context);
-
   return (
     <Navbar bg="light" expand="lg">
       <Container>

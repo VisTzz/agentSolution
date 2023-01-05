@@ -13,8 +13,6 @@ import { Context } from ".";
 const Routess = () => {
   
   const { user } = useContext(Context)
-
-  user.setIsAuth(true)
   
   return (
     <Routes>
