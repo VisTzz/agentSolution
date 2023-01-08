@@ -9,6 +9,13 @@ import { observer } from 'mobx-react';
 
 const NavBar = observer(() => {
   const { user } = useContext(Context);
+
+  const logOut = () => {
+    user.setUser('');
+    user.setIsAuth(false);
+    sessionStorage.removeItem('token');
+  }
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -26,8 +33,8 @@ const NavBar = observer(() => {
           </Nav>
           :
           <Nav className="me-auto">
-            <Button variant="light">Привет, {user.email}</Button>
-            <Button variant="light" onClick = {() => user.setIsAuth(!user.isAuth)}>Выйти</Button>
+            <Button variant="light">Привет, {user.user.email}</Button>
+            <Button variant="light" onClick = {() => logOut()}>Выйти</Button>
           </Nav>
         }
 
