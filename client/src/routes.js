@@ -13,6 +13,7 @@ import { Context } from "./index";
 const Routess = () => {
   
   const { user } = useContext(Context)
+  console.log(user.isAuth + ' '+ user.user.email)
   console.log(user)
   return (
     <Routes>

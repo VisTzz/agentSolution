@@ -16,8 +16,14 @@ const update = async (id, body) => {
     return data
 }
 
+const create = async (body) => {
+    const { data } = await $host.post('/api/contragents/create', body)
+    return data
+}
+
 export {
     getAll,
     getById,
-    update
+    update,
+    create
 }
