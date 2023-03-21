@@ -3,9 +3,12 @@ const ApiError = require('../error/error')
 
 class ContragentsController {
     async createContragents(req, res, next) {
-        const { firstName } = req.body
+        const body = JSON.stringify(req.body)
+        console.log(body)
+        console.log(req.body)
+
         try {
-            const contragents = await Contragents.create({ firstName })
+            const contragents = await Contragents.create({ body })
             return res.json(contragents)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -15,6 +18,7 @@ class ContragentsController {
 
     async getContragents(req, res) {
         const contragents = await Contragents.findAll()
+        console.log(contragents)
         return res.json(contragents)
     }
 
