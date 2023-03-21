@@ -23,8 +23,14 @@ const checkAuth = async () => {
     return jwt.decodeToken(data.token)
 }
 
+const getAll = async () => {
+    const { data } = await $host.get('/api/user/getAll')
+    return data
+}
+
 export {
     login,
     registration,
-    checkAuth
+    checkAuth,
+    getAll
 }

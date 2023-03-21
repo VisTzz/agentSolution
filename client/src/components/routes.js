@@ -1,4 +1,5 @@
 import Contragents from '../pages/contragents';
+import Users from '../pages/users';
 import Home from '../pages/home';
 import Auth from '../pages/auth';
 import addresses from '../utils/const';
@@ -23,5 +24,9 @@ export const privateRoutes = [
   {
     path: addresses.CONTRAGENTS + '/:id',
     element: ContragentsDetail
-  }
+  },
+  {
+    path: addresses.USERS,
+    element: Users
+  },
 ]

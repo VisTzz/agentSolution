@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Container, Form } from 'react-bootstrap';
+import { Button, Card, Container, Form, Row, Col, Checkbox } from 'react-bootstrap';
 import { useContext } from "react";
 import { Context } from "../index";
 import { Link, Navigate, useParams } from 'react-router-dom';
@@ -61,20 +61,26 @@ export default observer(function Auth() {
       <Card style={{ width: 500 }} className="text-center p-2">
         <Card.Header as="h5"> {isRegistration ? 'Регистрация' : 'Авторизация'}</Card.Header>
         <Form>
-          <Form.Group className="mb-3">
-            <Form.Label>Email</Form.Label>
+          <Form.Group className="mb-4">
             <Form.Control
               onChange={(e) => setEmail(e.target.value)}
               value={email}
               type="email" placeholder="Введите почту" />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Пароль</Form.Label>
             <Form.Control
               onChange={(e) => setPassword(e.target.value)}
               value={password}
               type="password" placeholder="Введите пароль" />
           </Form.Group>
+          <Row className='mb-4'>
+            <Col className='d-flex justify-content-center'>
+              <Form.Check type="checkbox" label="Запомнить меня" defaultChecked />
+            </Col>
+            <Col>
+              <a href='#!'>Не забывай пароль, сынок</a>
+            </Col>
+          </Row>
         </Form>
         {isRegistration ?
           <Button onClick={() => registrationUser(email, password)}>Регистрация</Button> :

@@ -6,20 +6,29 @@ import { getById, update} from '../http/contragentsAPI';
 
 export default observer(function ContragentsDetail() {
   const params = useParams()
-  const [details, setDetails] = useState({firstName: '', lastName: ''});
-
+  const [details, setDetails] = useState({body: {}});
+  
   useEffect(() => { 
     async function getContragentById(id) {
       const response = await getById(id)
       return response;
     }
-    getContragentById(params.id).then(data => setDetails(data)) 
+    getContragentById(params.id).then(data => {
+      const partyBody = JSON.parse(data.body);
+      
+      setDetails({
+        body: partyBody
+      })
+      console.log(partyBody)
+    }) 
+    
   }, [params])
 
   
 
   const updateContragent = async (id, details) => {
-    const response = await update(id, details)
+    let body = JSON.stringify(details)
+    const response = await update(id, body)
     return response;
   }
 
@@ -35,20 +44,18 @@ export default observer(function ContragentsDetail() {
                   <Form.Label>Имя</Form.Label>
                   <Form.Control 
                   onChange={e => setDetails({
-                    firstName: e.target.value,
-                    lastName: details.lastName
+                    body: Object.assign(details, {firstname: e.target.value})
                   })}
-                  value={details.firstName}
+                  value={details.body.firstname}
                    />
                 </Form.Group>
                 <Form.Group style={{ width: 200 }}>
                   <Form.Label>Фамилия</Form.Label>
                   <Form.Control 
                   onChange={e => setDetails({
-                    firstName: details.firstName,
-                    lastName: e.target.value
+                    body: Object.assign(details, {lastname: e.target.value})
                   })}
-                  value={details.lastName}
+                  value={details.body.lastname}
                    />
                 </Form.Group>
               </Row>

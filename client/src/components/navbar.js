@@ -25,6 +25,7 @@ const NavBar = observer(() => {
           <Nav className="me-auto">
             <Nav.Link href={addresses.HOME}>На главную</Nav.Link>
             <Nav.Link href={addresses.CONTRAGENTS}>Контрагенты</Nav.Link>
+            <Nav.Link href={addresses.USERS}>Пользователи</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         {!user.isAuth ?

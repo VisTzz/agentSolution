@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Form, Modal, Table } from 'react-bootstrap';
+import { Button, Card, Form, Modal, Table, Row, Col } from 'react-bootstrap';
 import { useContext } from "react";
 import { Context } from "../index";
 import { useNavigate } from 'react-router-dom';
@@ -11,15 +11,28 @@ export default observer(function Contragents() {
   const { contragents } = useContext(Context);
   const navigate = useNavigate();
   const [show, setShow] = useState(false)
-  const [name, setName] = useState('')
+  const [contragent, setContragent] = useState({
+    firstname: '',
+    lastname: '',
+    middlename: ''
+  })
 
   const handleShow = () => setShow(true)
   const handleClose = () => setShow(false)
 
-  useEffect(() => { getAllContragents().then(data => contragents.setContragents(data)) }, [])
+  useEffect(() => {
+    getAllContragents().then(data => {
+      contragents.setContragents(data)
+    }
+    )
+  }, [])
 
   const getAllContragents = async () => {
     const response = await getAll()
+
+    response.forEach(x => {
+      x.body = JSON.parse(x.body)
+    })
     return response;
   }
 
@@ -30,7 +43,12 @@ export default observer(function Contragents() {
 
   return (
     <Card>
-      <Button onClick={handleShow}>Создать</Button>
+      <Row>
+        <Col sm={4}>
+          <Button onClick={handleShow}>Создать</Button>
+        </Col>
+        <Col sm={8}></Col>
+      </Row>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -45,9 +63,9 @@ export default observer(function Contragents() {
             <React.Fragment key={i.id}>
               <tr>
                 <td><Button onClick={() => navigate(`${i.id}`)}>{i.id}</Button></td>
-                <td>{i.firstName}</td>
-                <td>{i.lastName}</td>
-                <td>{i.link}</td>
+                <td>{i.body.firstname}</td>
+                <td>{i.body.lastname}</td>
+                <td>{i.body.link}</td>
               </tr>
             </React.Fragment>
           ))
@@ -64,8 +82,29 @@ export default observer(function Contragents() {
             <Form.Group className="mb-3">
               <Form.Label>Имя</Form.Label>
               <Form.Control
-                onChange={(e) => setName(e.target.value)}
-                value={name} />
+                onChange={(e) => setContragent({
+                  ...contragent,
+                  firstname: e.target.value
+                })}
+                value={contragent.firstname} />
+            </Form.Group>,
+            <Form.Group className="mb-3">
+              <Form.Label>Фамилия</Form.Label>
+              <Form.Control
+                onChange={(e) => setContragent({
+                  ...contragent,
+                  lastname: e.target.value
+                })}
+                value={contragent.lastname} />
+            </Form.Group>,
+            <Form.Group className="mb-3">
+              <Form.Label>Отчество</Form.Label>
+              <Form.Control
+                onChange={(e) => setContragent({
+                  ...contragent,
+                  middlename: e.target.value
+                })}
+                value={contragent.middlename} />
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -73,7 +112,7 @@ export default observer(function Contragents() {
           <Button variant="secondary" onClick={handleClose}>
             Закрыть
           </Button>
-          <Button variant="primary" onClick ={ () => createContragent({firstName: name})}>
+          <Button variant="primary" onClick={() => createContragent(contragent)}>
             Сохранить
           </Button>
         </Modal.Footer>
