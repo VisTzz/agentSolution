@@ -7,7 +7,6 @@ const getAll = async () => {
 
 const getById = async (id) => {
     const { data } = await $host.get('/api/contragents/get/'+ id)
-    console.log(data)
     return data
 }
 

@@ -3,6 +3,7 @@ const addresses = {
     'CONTRAGENTS': '/contragents',
     'LOGIN': '/login',
     'USERS': '/users',
+    'USER': '/user',
 }
 
 export default addresses

@@ -19,7 +19,6 @@ export default observer(function ContragentsDetail() {
       setDetails({
         body: partyBody
       })
-      console.log(partyBody)
     }) 
     
   }, [params])

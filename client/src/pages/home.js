@@ -17,7 +17,7 @@ export default function Home() {
         </Card.Footer>
       </Card>
       <Card>
-        <Card.Body onClick={() => navigate('/contragents')}>
+        <Card.Body onClick={() => navigate('/users')}>
           <Card.Title>Пользователи</Card.Title>
           <Card.Text>
           </Card.Text>

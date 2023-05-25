@@ -28,9 +28,21 @@ const getAll = async () => {
     return data
 }
 
+const getById = async (id) => {
+    const { data } = await $host.get('/api/user/get/'+ id)
+    return data
+}
+
+const update = async (id, body) => {
+    const { data } = await $host.post('/api/user/'+ id, body)
+    return data
+}
+
 export {
     login,
     registration,
     checkAuth,
-    getAll
+    getAll,
+    getById,
+    update
 }

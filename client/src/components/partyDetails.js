@@ -10,7 +10,6 @@ import { ListGroup, Form } from 'react-bootstrap';
 
 const PartyDetails = observer(() => {
   const { user } = useContext(Context);
-  console.log(user)
   return (
     <Form.Group className="mb-3 ml-3" style={{ width: 200 }}>
       <Form.Label>Имя</Form.Label>
