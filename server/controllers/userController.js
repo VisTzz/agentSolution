@@ -59,6 +59,25 @@ class UserController {
         const users = await User.findAll()
         return res.json(users)
     }
+
+    async getUserById(req, res) { 
+        //if (!req.parameters) return 'Error';
+
+        const {id} = req.params;
+        const user = await User.findOne({where: {id}}) 
+        return res.json(user)
+    }
+
+    async updateUser(req, res) {
+        const {id} = req.params;
+        const body = req.body;
+        console.log(req)
+        const user = await User.update({
+            partyId: body.partyId
+        }, {where: {id}}) 
+        
+        return res.json(user)
+    }
 }
 
 module.exports = new UserController();

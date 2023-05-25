@@ -7,5 +7,7 @@ router.post('/login', userController.login)
 router.post('/registration', userController.registration)
 router.get('/auth', authMeddleware, userController.auth) 
 router.get('/getAll', userController.getAll) //for testing, should be delete
+router.get('/get/:id', userController.getUserById)
+router.post('/:id', userController.updateUser)
 
 module.exports = router;

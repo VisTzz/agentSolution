@@ -10,7 +10,6 @@ const app = express();
 const errorHandler = require('./middleware/errorHandlingMiddleware')
 const { sequelize } = require('./db');
 
-
 const start = async () => {
     try {  
         await sequelize.authenticate();
