@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Form, Modal, Table, Row, Col } from 'react-bootstrap';
 import { useContext } from "react";
-import { Context } from "../../../index";
 import { useNavigate } from 'react-router-dom';
 import { getAll } from '../../../http/userAPI';
 import { observer } from 'mobx-react';
 import SearchView from '../../../components/searchView'
 import { getAllUsers } from './lib/userHelper';
+import { useStore } from '../../../store/rootStoreContext';
 
 
 
 export default observer(function Users() {
-  const { user } = useContext(Context);
+  const { user } = useStore();
   const navigate = useNavigate();
   //const [users, setUsers] = useState({ body: {} });
 
@@ -45,4 +45,5 @@ export default observer(function Users() {
 
     </Card>
   );
+
 })

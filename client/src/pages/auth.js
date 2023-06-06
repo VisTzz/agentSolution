@@ -7,12 +7,13 @@ import { login, registration } from '../http/userAPI';
 import Alert from 'react-bootstrap/Alert';
 import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
+import { useStore } from '../store/rootStoreContext';
 const jwt = require('react-jwt')
 
 export default observer(function Auth() {
   //const { user } = useContext(Context);
-  const { user } = useContext(Context)
-  const { token } = useContext(Context)
+  const { user } = useStore()
+  const { token } = useStore()
   const navigate = useNavigate();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');

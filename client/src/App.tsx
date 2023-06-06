@@ -1,19 +1,17 @@
 import { observer } from "mobx-react";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter,
 } from "react-router-dom";
-import Alert from "./components/alert";
-import Dashboard from "./components/dashboard";
 import NavBar from "./components/navbar";
 import Routess from './routes'
-import { Context } from "./index";
 import { checkAuth } from "./http/userAPI";
 import { Spinner } from "react-bootstrap";
+import { useStore } from "./store/rootStoreContext";
 
 
 const App = observer( () => {
-  const { user } = useContext(Context)
+  const { user } = useStore()
   const [loading, setLoading] = useState(true)
   
   useEffect(() => {

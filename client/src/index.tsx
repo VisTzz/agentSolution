@@ -1,15 +1,14 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import App from './App'
 import ContragentsStore from './store/ContragentsStore';
 import TokenStore from './store/TokenStore';
 import UserStore from './store/UserStore';
+import { RootStoreContext } from './store/rootStoreContext';
 
-export const Context = createContext(null);
-
-const root = ReactDOM.createRoot(document.getElementById('root'))
+const root = ReactDOM.createRoot(document.getElementById('root')!)
 root.render(
-    <Context.Provider value = {{
+    <RootStoreContext.Provider value = {{
         user: new UserStore(),
         contragents: new ContragentsStore(),
         token: new TokenStore()
@@ -17,5 +16,5 @@ root.render(
     <React.StrictMode>
         <App />
     </React.StrictMode>
-    </Context.Provider>
+    </RootStoreContext.Provider>
 )

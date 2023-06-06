@@ -6,9 +6,10 @@ import Button from 'react-bootstrap/Button';
 import addresses from '../utils/const';
 import { Context } from "../index";
 import { observer } from 'mobx-react';
+import { useStore } from '../store/rootStoreContext';
 
 const NavBar = observer(() => {
-  const { user } = useContext(Context);
+  const { user } = useStore();
 
   const logOut = () => {
     user.setUser('');

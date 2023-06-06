@@ -5,10 +5,11 @@ import { Context } from "../index";
 import { useNavigate } from 'react-router-dom';
 import { getAll, create } from '../http/contragentsAPI';
 import { observer } from 'mobx-react';
+import { useStore } from '../store/rootStoreContext';
 
 
 export default observer(function Contragents() {
-  const { contragents } = useContext(Context);
+  const { contragents } = useStore();
   const navigate = useNavigate();
   const [show, setShow] = useState(false)
   const [contragent, setContragent] = useState({

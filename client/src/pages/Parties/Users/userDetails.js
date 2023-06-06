@@ -7,6 +7,7 @@ import { getById, update } from '../../../http/userAPI';
 import { getAllUsers } from './lib/userHelper';
 import { Context } from "../../../index";
 import * as contragentsApi from '../../../http/contragentsAPI';
+import { useStore } from '../../../store/rootStoreContext';
 
 export default observer(function UserDetails() {
 
@@ -14,8 +15,8 @@ export default observer(function UserDetails() {
   const [details, setDetails] = useState({ body: {} });
   const [detailsContragent, setDetailsContragent] = useState({ body: {} });
   const [show, setShow] = useState(false)
-  const { user } = useContext(Context);
-  const { contragents } = useContext(Context);
+  const { user } = useStore();
+  const { contragents } = useStore();
   let context = [];
 
   useEffect(() => {
