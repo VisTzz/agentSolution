@@ -1,17 +1,20 @@
 import { makeAutoObservable } from "mobx";
+import { Contragent, ContragentDetails } from "../utils/contextTypes";
 
 export default class ContragentsStore {
+    _contragents: Array<Contragent>;
+    _details: ContragentDetails;
     constructor() {
         this._contragents = []
-        this._details = {}
+        this._details = {body: {}}
         makeAutoObservable(this);
     } 
 
-    setContragents(contragents) {
+    setContragents(contragents: Array<Contragent>) {
         this._contragents = contragents;
     }
 
-    setDetails(details) {
+    setDetails(details: ContragentDetails) {
         this._details = details;
     }
 

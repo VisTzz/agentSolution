@@ -5,17 +5,17 @@ const getAll = async () => {
     return data
 }
 
-const getById = async (id) => {
+const getById = async (id: number) => {
     const { data } = await $host.get('/api/contragents/get/'+ id)
     return data
 }
 
-const update = async (id, body) => {
+const update = async (id: number, body: object) => {
     const { data } = await $host.post('/api/contragents/get/'+ id, body)
     return data
 }
 
-const create = async (body) => {
+const create = async (body: object) => {
     const { data } = await $host.post('/api/contragents/create', body)
     return data
 }

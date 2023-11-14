@@ -6,3 +6,13 @@ export type User = {
     role: string;
     skills: string[];
 }
+
+export type Contragent = {
+    firstname: string,
+    lastname: string,
+    middlename: string
+}
+
+export type ContragentDetails = {
+    body: object;
+}
