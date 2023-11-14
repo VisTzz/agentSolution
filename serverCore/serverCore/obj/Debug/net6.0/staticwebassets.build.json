@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "YpWyYfEf7L72jZvOTqNsSwe7IGTs3cxMJN6St6sHlL0=",
+  "Source": "serverCore",
+  "BasePath": "_content/serverCore",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
